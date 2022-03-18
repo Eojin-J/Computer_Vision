@@ -1,3 +1,19 @@
+def idct2d(f):
+    x1 = fftpack.idct(f, norm="ortho")
+    x2 = fftpack.idct(x1.transpose((0, 1, 2, 4, 3)), norm="ortho")
+    return x2.transpose((0, 1, 2, 4, 3))
+
+def ycbcr2rgb(im):
+    """
+    im: numpy array H x W x C, range [0, 255]
+    C: [Y, Cb, Cr]
+    output: numpy array H x W x C, range [0, 255]
+    """
+    xform = np.array([[1, 0, 1.402], [1, -0.34414, -.71414], [1, 1.772, 0]]) ## [Y, Cb, Cr], [Y, Cb, Cr], [Y, Cb, Cr] -->  R, G, B로 나타남 
+    rgb = im.astype(np.float64)
+    rgb = rgb.dot(xform.T)
+    return np.array(rgb, dtype=im.dtype)
+
 def jpg420recon(path):  
     image = jpegio.read(path)
     

@@ -1,3 +1,12 @@
+!pip install jpegio  
+
+import jpegio
+import numpy as np
+from scipy import fftpack
+import cv2
+import matplotlib.pyplot as plt
+
+
 def idct2d(f):
     x1 = fftpack.idct(f, norm="ortho")
     x2 = fftpack.idct(x1.transpose((0, 1, 2, 4, 3)), norm="ortho")

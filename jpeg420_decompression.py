@@ -56,4 +56,5 @@ def jpg420recon(path):
     return image_rgb
   
 img_color_recon420 = jpg420recon()  # jpegio로 이미지 불러와서 RGB로 복원하는 함수 실행, ()안에 image path 추가
+                                    #코드 원리를 위한 image >> test_image 폴더에 elon-face.jpg 업로드 해둠
 plt.imshow(img_color_recon420)  # 이미지 화면 출력
